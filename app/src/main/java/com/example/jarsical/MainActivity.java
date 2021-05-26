@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         sendDataToActivity(currentArrayIndex);
     }
     public void sendDataToActivity(int index){
-        Intent intent = new Intent(this, playSongActivity.class);
+        Intent intent = new Intent(this, PlaySongActivity.class);
         intent.putExtra("index", index);
         startActivity(intent);
     }

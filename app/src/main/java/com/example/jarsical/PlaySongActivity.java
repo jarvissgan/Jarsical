@@ -6,15 +6,17 @@ import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
-public class playSongActivity extends AppCompatActivity {
+public class PlaySongActivity extends AppCompatActivity {
 
-    MediaPlayer player;
+    MediaPlayer player = new MediaPlayer();
     private String title = "";
     private String artist ="";
     private String fileLink ="";
@@ -34,7 +36,7 @@ public class playSongActivity extends AppCompatActivity {
         currentIndex = songData.getInt("index");
         Log.d("Temasek","Retrieved position is: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
-        //playSong(fileLink);
+        playSong(fileLink);
     }
     public void displaySongBasedOnIndex(int selectedIndex){
         Song song = songCollection.getCurrentSong(currentIndex);
@@ -51,19 +53,41 @@ public class playSongActivity extends AppCompatActivity {
     }
     public void playSong(String songUrl){
         try{
-            player.reset();
+
             player.setDataSource(songUrl);
             player.prepare();
             player.start();
-            //gracefullyStopsWhenMusicEnds();
+            gracefullyStopsWhenMusicEnds();
 
             btnPlayPause.setText("PAUSE");
             setTitle(title);
 
         }catch (IOException e){
             e.printStackTrace();
-
-
+        }
+    }
+    public void playOrPauseMusic(View view){
+        if(player.isPlaying()){
+            player.pause();
+            btnPlayPause.setText("PLAY");
+        }else{
+            player.start();
+            btnPlayPause.setText("PAUSE");
+        }
+    }
+    private void gracefullyStopsWhenMusicEnds(){
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(getBaseContext(),"The song had ended and the onCompleteListener is activated\n" + "The button text is changed to 'PLAY", Toast.LENGTH_LONG).show();
+                btnPlayPause.setText("PLAY");
+            }
+        });
+    }
+    public void onBackPressed(){
+        super.onBackPressed();
+        if(player.isPlaying()) {
+            player.pause();
         }
     }
 }

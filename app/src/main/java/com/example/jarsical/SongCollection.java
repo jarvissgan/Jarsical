@@ -14,8 +14,7 @@ public class SongCollection {
         Song onTheFloor = new Song("S1002",
                 "On The Floor",
                 "Jennifer Lopez",
-                "https://p.scdn.co/mp3-preview/097c7b735ceb410943cbd507a6e1dfda272fd8a8?cid=2afe87a64b0042dabf51f37318616965",
-                //there is no link for On The Floor
+                "https://p.scdn.co/mp3-preview/3149bee27682223a558216b1cfa2a80286d93374?cid=2afe87a64b0042dabf51f37318616965",
                 4.34,
                 R.drawable.on_the_floor);
         songs[1] = onTheFloor;
