@@ -19,6 +19,20 @@ public class SongCollection {
                 R.drawable.on_the_floor);
         songs[1] = onTheFloor;
     }
+    public int getNextSong(int currentSongIndex){
+        if(currentSongIndex >= songs.length-1){
+            return currentSongIndex;
+        }else{
+            return currentSongIndex+1;
+        }
+    }
+    public int getPreviousSong(int currentSongIndex){
+        if(currentSongIndex <= 0){
+            return currentSongIndex;
+        }else{
+            return currentSongIndex-1;
+        }
+    }
     public Song getCurrentSong(int currentSongId){
         return songs[currentSongId];
     }
@@ -31,4 +45,5 @@ public class SongCollection {
         }
         return  -1;
     }
+
 }
