@@ -53,7 +53,7 @@ public class PlaySongActivity extends AppCompatActivity {
     }
     public void playSong(String songUrl){
         try{
-
+            player.reset();
             player.setDataSource(songUrl);
             player.prepare();
             player.start();
@@ -75,6 +75,26 @@ public class PlaySongActivity extends AppCompatActivity {
             btnPlayPause.setText("PAUSE");
         }
     }
+    public void playNext(View view){
+        currentIndex = songCollection.getNextSong(currentIndex);
+        Toast.makeText(this, "After clicking playNext,\nthe current index of this song\n"
+        + "in the songCollection array is now: " + currentIndex, Toast.LENGTH_LONG).show();
+        Log.d("Temasek", "After playNext, the index is now: " + currentIndex);
+        displaySongBasedOnIndex(currentIndex);
+        playSong(fileLink);
+
+    }
+
+    public void playPrevious(View view){
+        currentIndex = songCollection.getPreviousSong(currentIndex);
+        Toast.makeText(this, "After clicking playNext,\nthe current index of this song\n"
+                + "in the songCollection array is now: " + currentIndex, Toast.LENGTH_LONG).show();
+        Log.d("Temasek", "After playNext, the index is now: " + currentIndex);
+        displaySongBasedOnIndex(currentIndex);
+        playSong(fileLink);
+
+    }
+
     private void gracefullyStopsWhenMusicEnds(){
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
