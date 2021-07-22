@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+
 public class PlaySongActivity extends AppCompatActivity {
 
     MediaPlayer player = new MediaPlayer();
@@ -26,6 +27,9 @@ public class PlaySongActivity extends AppCompatActivity {
     private MediaPlayer Player = new MediaPlayer();
     private Button btnPlayPause =null;
     private SongCollection songCollection = new SongCollection();
+    Button btnRepeat;
+    Boolean repeatFlag = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class PlaySongActivity extends AppCompatActivity {
         Log.d("Temasek","Retrieved position is: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
+        btnRepeat = findViewById(R.id.btnRepeat);
     }
     public void displaySongBasedOnIndex(int selectedIndex){
         Song song = songCollection.getCurrentSong(currentIndex);
@@ -99,8 +104,13 @@ public class PlaySongActivity extends AppCompatActivity {
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(getBaseContext(),"The song had ended and the onCompleteListener is activated\n" + "The button text is changed to 'PLAY", Toast.LENGTH_LONG).show();
-                btnPlayPause.setText("PLAY");
+                if(repeatFlag){
+                    playOrPauseMusic(null);
+                }else{
+                    Toast.makeText(getBaseContext(),"The song had ended and the onCompleteListener is activated\n" + "The button text is changed to 'PLAY", Toast.LENGTH_LONG).show();
+                    btnPlayPause.setText("PLAY");
+                }
+
             }
         });
     }
@@ -109,5 +119,14 @@ public class PlaySongActivity extends AppCompatActivity {
         if(player.isPlaying()) {
             player.pause();
         }
+    }
+
+    public void repeatSong(View view) {
+        if(repeatFlag){
+            btnRepeat.setBackgroundResource(R.drawable.repeat_on);
+        }else {
+            btnRepeat.setBackgroundResource(R.drawable.repeat_off);
+        }
+        repeatFlag = !repeatFlag;
     }
 }
