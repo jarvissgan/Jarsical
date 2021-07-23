@@ -123,9 +123,12 @@ public class PlaySongActivity extends AppCompatActivity {
 
     public void repeatSong(View view) {
         if(repeatFlag){
-            btnRepeat.setBackgroundResource(R.drawable.repeat_on);
-        }else {
             btnRepeat.setBackgroundResource(R.drawable.repeat_off);
+            Log.d("Temasek","Activated disabled. Button ID:" + btnRepeat.getId());
+
+        }else {
+            btnRepeat.setBackgroundResource(R.drawable.repeat_on);
+            Log.d("Temasek","Activated repeat. Button ID:" + btnRepeat.getId());
         }
         repeatFlag = !repeatFlag;
     }
