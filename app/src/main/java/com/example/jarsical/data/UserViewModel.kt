@@ -1,4 +1,4 @@
-package data
+package com.example.jarsical.data
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 
 
 
-//provide data to UI and survive config changes
-class UserViewModel(application: Application): AndroidViewModel(application) {
+//provide com.example.jarsical.data to UI and survive config changes
+public class UserViewModel(application: Application): AndroidViewModel(application) {
     private val readAllData: LiveData<List<User>>
     private val repository: UserRepository
 

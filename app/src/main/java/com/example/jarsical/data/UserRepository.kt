@@ -1,4 +1,4 @@
-package data
+package com.example.jarsical.data
 
 import androidx.lifecycle.LiveData
 

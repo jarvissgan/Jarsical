@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="Username"
         android:inputType="textPersonName"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,12 +24,12 @@
         app:layout_constraintVertical_bias="0.013" />
 
     <EditText
-        android:id="@+id/AddLastName"
+        android:id="@+id/addLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="Password"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/AddAge"
+        android:id="@+id/addAge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -50,11 +50,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddLastName"
+        app:layout_constraintTop_toBottomOf="@+id/addLastName"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add"
@@ -63,5 +63,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddAge" />
+        app:layout_constraintTop_toBottomOf="@+id/addAge" />
 </androidx.constraintlayout.widget.ConstraintLayout>

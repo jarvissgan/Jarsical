@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.jarsical.fragments.list.ListFragment"
-        android:label="fragment_list"
+        android:label="Home"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_addFragment"
@@ -17,10 +17,13 @@
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.jarsical.fragments.add.addFragment"
-        android:label="fragment_add"
-        tools:layout="@layout/fragment_add" >
+        android:label="Add Data"
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_listFragment2"
             app:destination="@id/listFragment" />
     </fragment>
 </navigation>

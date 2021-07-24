@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupActionBarWithNavController(findNavController(R.id.fragmentView))
+
     }
 
     fun handleSelection(myView: View) {
@@ -27,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, PlaySongActivity::class.java)
         intent.putExtra("index", index)
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController((R.id.fragmentView))
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
 

@@ -1,4 +1,4 @@
-package data
+package com.example.jarsical.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val firstName: String,
-    val lastName: String,
+    val username: String,
+    val password: String,
     val age: Int
 )
