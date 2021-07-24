@@ -80,4 +80,18 @@
         app:layout_constraintStart_toEndOf="@+id/S1001"
         app:layout_constraintTop_toTopOf="@+id/S1001" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+
+        android:layout_width="409dp"
+        android:layout_height="509dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:navGraph="@navigation/my_nav" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

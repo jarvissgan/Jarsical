@@ -1,18 +1,17 @@
 package data
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.RoomDatabase
 import android.content.Context
-import org.junit.runner.manipulation.Ordering
-import java.security.AccessControlContext
+import androidx.room.Database
+import androidx.room.Room
+
 
 @Database(entities = [User::class], version = 1, exportSchema = false) //good practice to have version history
 abstract class UserDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
 
     companion object{
-        @Volatile //write to this field are made visable to other threads
+        @Volatile //write to this field are made visible to other threads
         private var INSTANCE: UserDatabase? = null
 
         fun getDatabase(context: Context): UserDatabase {
