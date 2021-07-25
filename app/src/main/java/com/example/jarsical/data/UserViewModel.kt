@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 //provide com.example.jarsical.data to UI and survive config changes
 public class UserViewModel(application: Application): AndroidViewModel(application) {
-    private val readAllData: LiveData<List<User>>
+    val readAllData: LiveData<List<User>>
     private val repository: UserRepository
 
     init{

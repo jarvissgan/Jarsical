@@ -38,13 +38,13 @@ class addFragment : Fragment() {
     }
 
     private fun insertDataToDatabase() {
-        val username = addFirstName.text.toString()
-        val password = addLastName.text.toString()
-        val age = addAge.text
+        val songName = addFirstName.text.toString()
+        val songArtist = addLastName.text.toString()
+        val songLength = addAge.text
 
-        if(inputCheck(username,password,age)){
+        if(inputCheck(songName,songArtist,songLength)){
             //creates objects
-            val user = User(0,username,password,Integer.parseInt(age.toString()))
+            val user = User(0,songName,songArtist,Integer.parseInt(songLength.toString()))
             //Add data to the database
             mUserViewModel.addUser(user)
             Toast.makeText(requireContext(),"Successfully Added!",Toast.LENGTH_LONG).show()
@@ -56,8 +56,8 @@ class addFragment : Fragment() {
         }
     }
     //checks if fields are empty
-    private fun inputCheck(username: String,password: String, age: Editable): Boolean{
-        return !(TextUtils.isEmpty(username) && TextUtils.isEmpty(password) && age.isEmpty())
+    private fun inputCheck(songName: String,songArtist: String, songLength: Editable): Boolean{
+        return !(TextUtils.isEmpty(songName) && TextUtils.isEmpty(songArtist) && songLength.isEmpty())
 
     }
 }

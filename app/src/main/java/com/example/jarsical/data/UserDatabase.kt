@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [User::class], version = 3, exportSchema = false) //good practice to have version history
+@Database(entities = [User::class], version = 1) //good practice to have version history
 abstract class UserDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
 
@@ -27,7 +27,7 @@ abstract class UserDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     UserDatabase::class.java,
-                    "user_database"
+                    "song_list"
                 ).build()
                 INSTANCE = instance
                 return instance
