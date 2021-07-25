@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="625dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/bottom_navigationbar" />
+
     <TextView
         android:id="@+id/txtTitle1"
         android:layout_width="wrap_content"
@@ -80,19 +89,30 @@
         app:layout_constraintStart_toEndOf="@+id/S1001"
         app:layout_constraintTop_toTopOf="@+id/S1001" />
 
-    <fragment
-        android:id="@+id/fragmentView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
 
-        android:layout_width="409dp"
-        android:layout_height="509dp"
-        app:defaultNavHost="true"
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="240dp">
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:navGraph="@navigation/my_nav" />
+        <fragment
+            android:id="@+id/fragmentView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:navGraph="@navigation/my_nav" />
+
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

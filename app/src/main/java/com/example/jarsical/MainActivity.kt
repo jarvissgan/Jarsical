@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupActionBarWithNavController(findNavController(R.id.fragmentView))
-
     }
 
     fun handleSelection(myView: View) {

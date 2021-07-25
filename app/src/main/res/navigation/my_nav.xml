@@ -18,7 +18,7 @@
         android:id="@+id/addFragment"
         android:name="com.example.jarsical.fragments.add.addFragment"
         android:label="Add Data"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_addSong" >
         <action
             android:id="@+id/action_addFragment_to_listFragment"
             app:destination="@id/listFragment" />
