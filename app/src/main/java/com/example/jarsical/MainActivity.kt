@@ -12,9 +12,11 @@ class MainActivity : AppCompatActivity() {
     var songCollection = SongCollection()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
         setupActionBarWithNavController(findNavController(R.id.fragmentView))
+
     }
 
     fun handleSelection(myView: View) {
