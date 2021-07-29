@@ -8,13 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
     var songCollection = SongCollection()
+
+    //creates instance of database
+    //val db = Room.databaseBuilder( applicationContext, UserDatabase::class.java, "song_list")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        setContentView(R.layout.activity_main)
 
+        //hides action bar
+        supportActionBar?.hide()
+
+        setContentView(R.layout.activity_main)
         setupActionBarWithNavController(findNavController(R.id.fragmentView))
 
     }

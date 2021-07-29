@@ -11,5 +11,8 @@ data class User(
     val songName: String,
     val songArtist: String,
     val songLength: Int,
+    val songLink: String,
+    val artLink: String,
 
 )
+

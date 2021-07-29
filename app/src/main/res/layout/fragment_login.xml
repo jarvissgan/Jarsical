@@ -8,12 +8,27 @@
     >
 
     <EditText
-        android:id="@+id/addFirstName"
+        android:id="@+id/addSongLength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Song Length"
+
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addArtist"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <EditText
+        android:id="@+id/addSongName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Song Title"
         android:inputType="textPersonName"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,44 +39,55 @@
         app:layout_constraintVertical_bias="0.013" />
 
     <EditText
-        android:id="@+id/addLastName"
+        android:id="@+id/addArtist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Artist"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFirstName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addSongName"
+        app:layout_constraintVertical_bias="0.026" />
 
     <EditText
-        android:id="@+id/addAge"
+        android:id="@+id/addSongLink"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:ems="10"
-        android:hint="Age"
+        android:hint="Song Link"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addLastName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addSongLength"
+        app:layout_constraintVertical_bias="0.089" />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add"
 
+        android:layout_marginTop="44dp"
+        android:text="Add"
         app:backgroundTint="#6C6C6C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAge" />
+        app:layout_constraintTop_toBottomOf="@+id/addArtLink" />
+
+    <EditText
+        android:id="@+id/addArtLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Cover Art URL"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/addSongLink"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

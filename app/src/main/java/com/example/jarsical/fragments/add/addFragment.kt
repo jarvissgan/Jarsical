@@ -1,7 +1,6 @@
 package com.example.jarsical.fragments.add
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -38,13 +37,15 @@ class addFragment : Fragment() {
     }
 
     private fun insertDataToDatabase() {
-        val songName = addFirstName.text.toString()
-        val songArtist = addLastName.text.toString()
-        val songLength = addAge.text
+        val songName = addSongName.text.toString()
+        val songArtist = addArtist.text.toString()
+        val songLength = addSongLength.text
+        val songLink = addSongLink.text.toString()
+        val artLink = addArtLink.text.toString()
 
-        if(inputCheck(songName,songArtist,songLength)){
+        if(inputCheck(songName,songArtist,songLink, artLink)){
             //creates objects
-            val user = User(0,songName,songArtist,Integer.parseInt(songLength.toString()))
+            val user = User(0,songName,songArtist,Integer.parseInt(songLength.toString()),songLink, artLink)
             //Add data to the database
             mUserViewModel.addUser(user)
             Toast.makeText(requireContext(),"Successfully Added!",Toast.LENGTH_LONG).show()
@@ -56,8 +57,8 @@ class addFragment : Fragment() {
         }
     }
     //checks if fields are empty
-    private fun inputCheck(songName: String,songArtist: String, songLength: Editable): Boolean{
-        return !(TextUtils.isEmpty(songName) && TextUtils.isEmpty(songArtist) && songLength.isEmpty())
+    private fun inputCheck(songName: String, songArtist: String, songLink: String, artLink: String): Boolean{
+        return !(TextUtils.isEmpty(songName) && TextUtils.isEmpty(songArtist) && TextUtils.isEmpty(songLink) && TextUtils.isEmpty(artLink))
 
     }
 }
