@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.custom_row.view.*
 
 class listAdapter: RecyclerView.Adapter<listAdapter.MyViewHolder>() {
 
-    private var userList = emptyList<User>()
     var songCollection = SongCollection()
+    private var userList = emptyList<User>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
