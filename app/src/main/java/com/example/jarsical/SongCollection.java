@@ -86,14 +86,17 @@ public class SongCollection {
     }
     public int getNextSong(int currentSongIndex){
         if(currentSongIndex >= songs.length-1){
-            return currentSongIndex;
+            //if index is more than song.length-1, it plays the first song on the array
+            return 0;
         }else{
             return currentSongIndex+1;
         }
     }
     public int getPreviousSong(int currentSongIndex){
         if(currentSongIndex <= 0){
-            return currentSongIndex;
+            //if index is less than 0, it plays the last song on the array
+            return songs.length-1;
+
         }else{
             return currentSongIndex-1;
         }
