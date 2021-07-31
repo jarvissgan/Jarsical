@@ -11,6 +11,7 @@
         android:layout_width="74dp"
         android:layout_height="74dp"
         android:layout_marginStart="40dp"
+        android:contentDescription="test"
         android:onClick="handleSelection"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toStartOf="@+id/txtSongName"
@@ -51,5 +52,18 @@
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/txtSongName" />
+
+    <TextView
+        android:id="@+id/txtIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Index"
+
+        android:visibility="invisible"
+
+        app:layout_constraintStart_toEndOf="@+id/txtSongName"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

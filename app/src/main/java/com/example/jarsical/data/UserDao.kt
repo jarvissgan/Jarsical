@@ -16,4 +16,14 @@ interface UserDao {
     @Query("SELECT * FROM song_list ORDER BY id ASC") // asc = ascending
     fun readAllData(): LiveData<List<User>>
 
+    @Query("SELECT * FROM song_list where id = :songId")
+    fun loadBySongId(songId: Int): User?
+
+    @Query("SELECT * FROM song_list where songName = :songName")
+    fun loadBySongTitle(songName: String): User?
+
+    @Query("SELECT * FROM song_list where artLink = :artLink")
+    fun loadRowByArtLink(artLink: String): List<User>
+
+
 }

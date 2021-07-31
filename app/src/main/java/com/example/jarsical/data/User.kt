@@ -14,5 +14,5 @@ data class User(
     val songLink: String,
     val artLink: String,
 
-)
+    )
 
