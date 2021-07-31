@@ -26,9 +26,12 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun handleSelection(myView: View) {
-        val resourceId = resources.getResourceEntryName(myView.id)
-        val currentArrayIndex = songCollection.searchSongById(resourceId)
-        Log.d("Temasek", "The id of the pressed ImageButton is: $resourceId")
+        //reads contentDescription of image button and adds it to the val
+        val contentDescription = myView.contentDescription.toString()
+
+        //reads contentDescription of image button and adds it to the val
+        val currentArrayIndex = songCollection.searchSongById(contentDescription)
+        Log.d("Temasek", "The id of the pressed ImageButton is: $contentDescription")
         sendDataToActivity(currentArrayIndex)
     }
 
