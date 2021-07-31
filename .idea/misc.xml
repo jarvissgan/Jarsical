@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/drawable/gradient.xml" value="0.35885416666666664" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/drawable/gradient_background.xml" value="0.203125" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/drawable/ic_baseline_skip_next_24.xml" value="0.203125" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/drawable/ic_baseline_skip_previous_24.xml" value="0.203125" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/drawable/next.xml" value="0.203125" />
         <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/layout/activity_play_song.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/layout/activity_play_song.xml" value="0.33" />
         <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/layout/custom_row.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/jarvi/AndroidStudioProjects/Jarsical/app/src/main/res/layout/fragment_list.xml" value="0.3319713993871297" />
       </map>
     </option>
   </component>

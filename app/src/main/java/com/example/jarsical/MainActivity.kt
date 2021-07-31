@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 class MainActivity: AppCompatActivity() {
     var songCollection = SongCollection()
 
+
     //creates instance of database
     //val db = Room.databaseBuilder( applicationContext, UserDatabase::class.java, "song_list")
 
