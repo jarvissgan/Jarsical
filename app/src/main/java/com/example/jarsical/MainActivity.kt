@@ -5,23 +5,36 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity: AppCompatActivity() {
     var songCollection = SongCollection()
+    val libraryFragment = com.example.jarsical.fragments.library.libraryFragment()
+    val songFragment = com.example.jarsical.fragments.list.songFragment()
+    val searchFragment = com.example.jarsical.fragments.search.searchFragment()
+
 
     //creates instance of database
     //val db = Room.databaseBuilder( applicationContext, UserDatabase::class.java, "song_list")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //hides action bar
         supportActionBar?.hide()
-
         setContentView(R.layout.activity_main)
-        setupActionBarWithNavController(findNavController(R.id.fragmentView))
+        //sets songFragment to load onCreate
+        replaceFragment(songFragment)
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.nav_home -> replaceFragment(songFragment)
+                R.id.nav_library -> replaceFragment(libraryFragment)
+                R.id.nav_search -> replaceFragment(searchFragment)
+
+            }
+            true
+        }
+
 
     }
 
@@ -41,9 +54,13 @@ class MainActivity: AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController((R.id.fragmentView))
-        return navController.navigateUp() || super.onSupportNavigateUp()
+    //replaceFragment facilitates changing container views on click
+    private fun replaceFragment(fragment: Fragment){
+        if(fragment != null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_Container, fragment)
+            transaction.commit()
+        }
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.jarsical.fragments.library
+package com.example.jarsical.fragments.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.jarsical.R
 
-class libraryFragment : Fragment(){
+class searchFragment : Fragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

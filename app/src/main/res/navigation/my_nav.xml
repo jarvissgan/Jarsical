@@ -6,6 +6,18 @@
     app:startDestination="@id/listFragment">
 
     <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.jarsical.fragments.list.songFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_song">
+        <action
+            android:id="@+id/action_listFragment_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/listFragment"
         android:name="com.example.jarsical.fragments.list.songFragment"
         android:label="Home"
@@ -13,6 +25,9 @@
         <action
             android:id="@+id/action_listFragment_to_libraryFragment"
             app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
