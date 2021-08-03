@@ -11,10 +11,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 class MainActivity: AppCompatActivity() {
     var songCollection = SongCollection()
 
-
-    //creates instance of database
-    //val db = Room.databaseBuilder( applicationContext, UserDatabase::class.java, "song_list")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,9 +19,7 @@ class MainActivity: AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         setupActionBarWithNavController(findNavController(R.id.fragmentView))
-
     }
-
     fun handleSelection(myView: View) {
         //reads contentDescription of image button and adds it to the val
         val contentDescription = myView.contentDescription.toString()

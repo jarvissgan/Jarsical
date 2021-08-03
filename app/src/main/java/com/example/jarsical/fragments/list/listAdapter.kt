@@ -8,14 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jarsical.R
 import com.example.jarsical.R.layout.custom_row
 import com.example.jarsical.SongCollection
-import com.example.jarsical.data.User
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custom_row.view.*
 
 class listAdapter: RecyclerView.Adapter<listAdapter.MyViewHolder>() {
 
     var songCollection = SongCollection()
-    private var userList = emptyList<User>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -43,11 +41,4 @@ class listAdapter: RecyclerView.Adapter<listAdapter.MyViewHolder>() {
         Log.d("onBind",test)
 
     }
-
-    fun setData(user: List<User>){
-        this.userList = user
-        notifyDataSetChanged()
-    }
-
-
 }
