@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.list.ListFragment"
+    tools:context=".fragments.list.songFragment"
     android:background="@drawable/gradient_background"
     >
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewSong"
         android:layout_width="409dp"
         android:layout_height="729dp"
         app:layout_constraintEnd_toEndOf="parent"

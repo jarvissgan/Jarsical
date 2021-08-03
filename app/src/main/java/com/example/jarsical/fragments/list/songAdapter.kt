@@ -11,7 +11,7 @@ import com.example.jarsical.SongCollection
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custom_row.view.*
 
-class listAdapter: RecyclerView.Adapter<listAdapter.MyViewHolder>() {
+class songAdapter: RecyclerView.Adapter<songAdapter.MyViewHolder>() {
 
     var songCollection = SongCollection()
 

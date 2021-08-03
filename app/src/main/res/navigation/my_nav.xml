@@ -7,18 +7,19 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.jarsical.fragments.list.ListFragment"
+        android:name="com.example.jarsical.fragments.list.songFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_song" >
         <action
-            android:id="@+id/action_listFragment_to_addFragment"
-            app:destination="@id/addFragment" />
+            android:id="@+id/action_listFragment_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/addFragment"
-        android:name="com.example.jarsical.fragments.add.addFragment"
+        android:id="@+id/libraryFragment"
+        android:name="com.example.jarsical.fragments.library.libraryFragment"
         android:label="Add Data"
-        tools:layout="@layout/fragment_addSong" >
+        tools:layout="@layout/fragment_library" >
         <action
             android:id="@+id/action_addFragment_to_listFragment"
             app:destination="@id/listFragment" />

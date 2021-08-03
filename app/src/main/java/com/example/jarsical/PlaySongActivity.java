@@ -32,7 +32,6 @@ public class PlaySongActivity extends AppCompatActivity {
     private MediaPlayer Player = new MediaPlayer();
     private Button btnPlayPause =null;
     private SongCollection songCollection = new SongCollection();
-    private SongCollection originalSongCollection = new SongCollection();
 
     //turns array to list, used for shuffle
     List<Song> shuffleList  = Arrays.asList(songCollection.songs);
@@ -57,7 +56,7 @@ public class PlaySongActivity extends AppCompatActivity {
         btnPlayPause = findViewById(R.id.btnPlayPause);
         Bundle songData = this.getIntent().getExtras();
         currentIndex = songData.getInt("index");
-        //Log.d("Temasek","Retrieved position is: " + currentIndex);
+        Log.d("Temasek","Retrieved position is: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
 
@@ -112,7 +111,7 @@ public class PlaySongActivity extends AppCompatActivity {
         ImageView iCoverArt = findViewById(R.id.imgCoverArt);
 
         //picasso allows to download images from the image and store in cache, reducing app size
-        //.fit() allows picasso to internally reduce the image siuze
+        //.fit() allows picasso to internally reduce the image size
         Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(iCoverArt);// loads images into imageButton
         handler.removeCallbacks(p_bar);
 
