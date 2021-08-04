@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
     SongCollection songCollection = new SongCollection();
+    ArrayList<Song> favList = new ArrayList<Song>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,14 +21,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public void handleSelection(View myView){
         String resourceId = getResources().getResourceEntryName(myView.getId());
-        int currentArrayIndex = songCollection.searchSongById(resourceId);
+        Song currentArrayIndex = songCollection.searchSongById(resourceId);
         Log.d("Temasek","The id of the pressed ImageButton is: " + resourceId);
         sendDataToActivity(currentArrayIndex);
     }
-    public void sendDataToActivity(int index){
+    public void sendDataToActivity(Song index){
         Intent intent = new Intent(this, PlaySongActivity.class);
-        intent.putExtra("index", index);
+        intent.putExtra("index", index.getId());
         startActivity(intent);
+    }
+    public void addToFavourite(View view){
+        String songID = view.getContentDescription().toString();
+        Song song = songCollection.searchSongById(songID);
+        favList.add(song);
+
+    }
+    public void goToFavouriteActivity(View view){
+
     }
 
 

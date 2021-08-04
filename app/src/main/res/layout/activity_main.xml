@@ -4,80 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
-    <TextView
-        android:id="@+id/txtTitle1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="8dp"
-        android:text="Photograph"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/S1001"
-        app:layout_constraintTop_toTopOf="@+id/S1001" />
-
-    <ImageButton
-        android:id="@+id/S1002"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="28dp"
-        android:onClick="handleSelection"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/S1001"
-        app:srcCompat="@drawable/on_the_floor" />
-
-    <TextView
-        android:id="@+id/txtTitle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="8dp"
-        android:text="On the Floor"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/S1002"
-        app:layout_constraintTop_toTopOf="@+id/S1002" />
-
-    <TextView
-        android:id="@+id/txtArtist2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp"
-        android:text="Jeniffer Lopez"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/S1002"
-        app:layout_constraintTop_toTopOf="@+id/S1002" />
-
-    <ImageButton
-        android:id="@+id/S1001"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="32dp"
-        android:onClick="handleSelection"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="680dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/photograph" />
+        app:menu="@menu/bottom_navigationbar" />
 
-    <TextView
-        android:id="@+id/txArtist1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp"
-        android:text="Ed Sheeran"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/S1001"
-        app:layout_constraintTop_toTopOf="@+id/S1001" />
+    <FrameLayout
+        android:id="@+id/fragment_Container"
+        android:layout_width="409dp"
+        android:layout_height="678dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
