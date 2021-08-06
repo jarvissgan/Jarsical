@@ -60,17 +60,4 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSongName"
         android:layout_marginLeft="8dp" />
 
-    <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="addToFavourite"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtSongName" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -125,8 +125,6 @@ public class PlaySongActivity extends AppCompatActivity {
             player.start();
             gracefullyStopsWhenMusicEnds();
             btnPlayPause.setBackgroundResource(R.drawable.ic_baseline_pause_circle_outline_24);
-
-
             setTitle(title);
 
         }catch (IOException e){

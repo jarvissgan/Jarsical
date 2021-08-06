@@ -30,7 +30,8 @@
         android:background="@drawable/ic_baseline_skip_previous_24"
         android:onClick="playPrevious"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="40dp" />
 
     <Button
         android:id="@+id/btnPlayPause"
@@ -52,7 +53,8 @@
         android:background="@drawable/ic_baseline_skip_next_24"
         android:onClick="playNext"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="40dp" />
 
     <TextView
         android:id="@+id/txtArtist"
@@ -89,7 +91,8 @@
         android:onClick="repeatSong"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNext"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginRight="40dp" />
 
     <Button
         android:id="@+id/btnShuffle"
@@ -101,7 +104,8 @@
         android:onClick="shuffleSong"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPrevious"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginLeft="40dp" />
 
     <TextView
         android:id="@+id/txtSongTitle"

@@ -1,7 +1,7 @@
 package com.example.jarsical;
 
 public class SongCollection {
-    public Song songs[] = new Song[10];
+    public static Song songs[] = new Song[10];
     public SongCollection(){
 
         Song photograph = new Song("S1001",
@@ -105,14 +105,14 @@ public class SongCollection {
         return songs[currentSongId];
     }
 
-    public int searchSongById(String id){
+    public Song searchSongById(String id){
         for(int index=0; index < songs.length; index++){
             Song tempSong = songs[index];
             if(tempSong.getId().equals(id)){
-                return index;
+                return tempSong;
             }
         }
-        return  -1;
+        return  null;
     }
 
 }
