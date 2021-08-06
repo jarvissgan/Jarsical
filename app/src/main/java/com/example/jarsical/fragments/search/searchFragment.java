@@ -1,4 +1,6 @@
 package com.example.jarsical.fragments.search;
 
-public class searchFragment {
+import androidx.fragment.app.Fragment;
+
+public class searchFragment extends Fragment {
 }

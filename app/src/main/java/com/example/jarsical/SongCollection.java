@@ -1,7 +1,7 @@
 package com.example.jarsical;
 
 public class SongCollection {
-    public Song songs[] = new Song[10];
+    public static Song songs[] = new Song[10];
     public SongCollection(){
 
         Song photograph = new Song("S1001",
