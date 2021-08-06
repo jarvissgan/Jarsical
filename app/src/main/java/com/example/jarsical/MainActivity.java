@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jarsical.fragments.home.songFragment;
@@ -33,12 +36,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        //fragments
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_Container,new songFragment()).commit();
         TextView fragmentName = findViewById(R.id.txtFragmentName);
         fragmentName.setText("Home");
 
+        //library items
         sharedPreferences = getSharedPreferences("playlist",MODE_PRIVATE);
         String albums = sharedPreferences.getString("playlist","");
         if(!albums.equals("")){
@@ -46,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
             Gson gson = new Gson();
             favList = gson.fromJson(albums,token.getType());
         }
-
     }
     public void handleSelection(View myView){
         String resourceId = myView.getContentDescription().toString();
         Song currentArrayIndex = songCollection.searchSongById(resourceId);
+        Log.d("currentArrayIndex",currentArrayIndex.toString());
         Log.d("Temasek","The id of the pressed ImageButton is: " + resourceId);
         sendDataToActivity(currentArrayIndex);
     }
@@ -70,10 +75,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("playlist", json);
         editor.apply();
 
-
-
     }
-
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

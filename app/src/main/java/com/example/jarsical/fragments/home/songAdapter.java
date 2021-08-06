@@ -36,10 +36,9 @@ public class songAdapter extends RecyclerView.Adapter<songAdapter.ViewHolder> {
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtists());
         Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// loads images into imageButton
+
         holder.imageButton.setContentDescription(song.getId());
         holder.favButton.setContentDescription(song.getId());
-
-
 
     }
 
