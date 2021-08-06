@@ -11,12 +11,12 @@
         android:layout_width="74dp"
         android:layout_height="74dp"
         android:layout_marginStart="50dp"
-        android:onClick="handleSelection"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toStartOf="@+id/txtSongName"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="50dp" />
 
     <TextView
         android:id="@+id/txtSongName"
@@ -27,7 +27,8 @@
         android:textColor="@color/white"
         android:textSize="23dp"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/txtSongLength"
@@ -41,7 +42,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="19dp"
         app:layout_constraintStart_toEndOf="@+id/txtSongArtist"
-        app:layout_constraintTop_toBottomOf="@+id/txtSongName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSongName"
+        android:layout_marginLeft="12dp" />
 
     <TextView
         android:id="@+id/txtSongArtist"
@@ -54,7 +56,8 @@
         android:text="Lewis Capaldi"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/txtSongName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSongName"
+        android:layout_marginLeft="8dp" />
 
     <Button
         android:id="@+id/buttonTest"
@@ -65,6 +68,7 @@
         android:onClick="addToFavourite"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtSongName" />
+        app:layout_constraintStart_toEndOf="@+id/txtSongName"
+        android:layout_marginLeft="28dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

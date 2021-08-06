@@ -1,5 +1,6 @@
 package com.example.jarsical.fragments.home;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jarsical.PlaySongActivity;
 import com.example.jarsical.R;
 import com.example.jarsical.Song;
 import com.example.jarsical.SongCollection;
@@ -39,6 +41,12 @@ public class songAdapter extends RecyclerView.Adapter<songAdapter.ViewHolder> {
 
         holder.imageButton.setContentDescription(song.getId());
         holder.favButton.setContentDescription(song.getId());
+
+        holder.imageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
+            intent.putExtra("index",position);
+            v.getContext().startActivity(intent);
+        });
 
     }
 

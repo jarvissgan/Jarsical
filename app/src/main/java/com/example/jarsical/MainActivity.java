@@ -52,18 +52,7 @@ public class MainActivity extends AppCompatActivity {
             favList = gson.fromJson(albums,token.getType());
         }
     }
-    public void handleSelection(View myView){
-        String resourceId = myView.getContentDescription().toString();
-        Song currentArrayIndex = songCollection.searchSongById(resourceId);
-        Log.d("currentArrayIndex",currentArrayIndex.toString());
-        Log.d("Temasek","The id of the pressed ImageButton is: " + resourceId);
-        sendDataToActivity(currentArrayIndex);
-    }
-    public void sendDataToActivity(Song index){
-        Intent intent = new Intent(this, PlaySongActivity.class);
-        intent.putExtra("index", index.getId());
-        startActivity(intent);
-    }
+
     public void addToFavourite(View view){
         String songID = view.getContentDescription().toString();
         Song song = songCollection.searchSongById(songID);

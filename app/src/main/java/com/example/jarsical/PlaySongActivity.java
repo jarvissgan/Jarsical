@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -44,6 +45,7 @@ public class PlaySongActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     Handler handler = new Handler();
+    ArrayList<Song> song;
 
 
     @Override

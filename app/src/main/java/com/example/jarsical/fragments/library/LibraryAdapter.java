@@ -1,5 +1,6 @@
 package com.example.jarsical.fragments.library;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jarsical.PlaySongActivity;
 import com.example.jarsical.R;
 import com.example.jarsical.Song;
 import com.squareup.picasso.Picasso;
@@ -32,13 +34,17 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
         Song song = playlist.get(position);
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtists());
         Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// loads images into imageButton
         holder.imageButton.setContentDescription(song.getId());
+
+        holder.imageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
+            intent.putExtra("index",position);
+            v.getContext().startActivity(intent);
+        });
 
 
     }

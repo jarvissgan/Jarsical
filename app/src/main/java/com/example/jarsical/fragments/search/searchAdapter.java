@@ -1,35 +1,44 @@
 package com.example.jarsical.fragments.search;
 
-import static com.example.jarsical.SongCollection.songs;
-
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jarsical.PlaySongActivity;
 import com.example.jarsical.R;
 import com.example.jarsical.Song;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder> {
+public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder> implements Filterable {
+
+    final Song[] song;
+    List<Song> songFiltered;
 
     public searchAdapter(Song[] songs) {
+        this.song = songs;
         this.songArray = new ArrayList<>();
 
         for(int i =0; i< songs.length;i++){
             songArray.add(songs[i]);
         }
+        songFiltered = songArray;
+        Log.d("ini", songArray.get(0).getTitle());
     }
-    private static ArrayList<Song> songArray;
 
+    private static ArrayList<Song> songArray;
 
     @NonNull
     @Override
@@ -41,18 +50,67 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Song song = songArray.get(position);
+        Song song = songFiltered.get(position);
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtists());
         Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// loads images into imageButton
         holder.imageButton.setContentDescription(song.getId());
         holder.favButton.setContentDescription(song.getId());
 
+        holder.imageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
+            intent.putExtra("index",position);
+            v.getContext().startActivity(intent);
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return songs.length;
+        return songFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if(charString.isEmpty()){
+                    Log.d("charstring", "empty!");
+
+                }else {
+                    Log.d("filter", "trying to filter");
+                    List<Song> filteredList = new ArrayList<>();
+                    for(int i = 0; i < songArray.size();i++){
+                        Log.d("filter", songArray.get(i).getTitle());
+                        if(songArray.get(i).getTitle().toLowerCase().contains(charString.toLowerCase())){
+                            filteredList.add(songArray.get(i));
+                        }
+                    }
+                    songFiltered = filteredList;
+                    notifyDataSetChanged();
+
+
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = songFiltered;
+
+                Log.d("filter results", filterResults.values.toString());
+                Log.d("ini", songArray.get(0).getTitle());
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                songFiltered = (ArrayList<Song>)results.values;
+                setData(songFiltered);
+                Log.d("publish","uh");
+
+            }
+        };
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,21 +125,11 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder
             songArtist = itemView.findViewById(R.id.txtSongArtist);
             imageButton = itemView.findViewById(R.id.imageButton);
             favButton = itemView.findViewById(R.id.buttonTest);
-
         }
     }
-    public void filter(String text){
-        ArrayList<Song> tempArrayList = new ArrayList<>();
-        Log.d("filter",tempArrayList.toString());
-            for(Song song: songArray){
-                if(song.getTitle().toLowerCase().contains(text)){
-                    tempArrayList.add(song);
-                    Log.d("filter",tempArrayList.toString());
-                }
-            }
-            searchAdapter.filterList(tempArrayList);
-    }
-    public static void filterList(ArrayList<Song> songFiltered){
-        songArray = songFiltered;
+
+    public void setData(List<Song> sonGFiltered){
+        this.songFiltered = sonGFiltered;
+        this.notifyDataSetChanged();
     }
 }

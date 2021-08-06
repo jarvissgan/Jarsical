@@ -3,10 +3,12 @@ package com.example.jarsical.fragments.search;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +26,6 @@ public class searchFragment extends Fragment {
     RecyclerView recyclerView;
     Song[] song = SongCollection.songs;
     EditText editText;
-    searchAdapter searchAdapter;
 
 
 
@@ -33,29 +34,27 @@ public class searchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewSearch);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new searchAdapter(song));
-
-        editText = view.findViewById(R.id.editTextSearch);
-        editText.addTextChangedListener(new TextWatcher() {
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchAdapter _searchAdapter = new searchAdapter(song);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                searchAdapter.filter(s.toString());
+            public boolean onQueryTextChange(String newText) {
+                _searchAdapter.getFilter().filter(newText);
+                _searchAdapter.notifyDataSetChanged();
+                Log.d("searchView", newText);
+                return true;
             }
         });
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(_searchAdapter);
+
+
+
         return view;
     }
-
-    
 }
