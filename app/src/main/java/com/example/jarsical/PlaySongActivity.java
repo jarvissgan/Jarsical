@@ -49,7 +49,6 @@ public class PlaySongActivity extends AppCompatActivity {
     Button btnRepeat;
     Button btnShuffle;
     Button btnMore;
-    Button btnBack;
 
 
     Boolean repeatFlag = false;
@@ -69,7 +68,6 @@ public class PlaySongActivity extends AppCompatActivity {
         Bundle songData = this.getIntent().getExtras();
 
         btnMore = findViewById(R.id.btnMore);
-        btnBack = findViewById(R.id.btnBack);
         btnRepeat = findViewById(R.id.btnRepeat);
         btnShuffle = findViewById(R.id.btnShuffle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
@@ -80,14 +78,6 @@ public class PlaySongActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 v.showContextMenu();
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                player.stop();
-                startActivity(intent);
             }
         });
 
@@ -160,7 +150,7 @@ public class PlaySongActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("playlist", json);
                 editor.apply();
-                Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Added to playlist",Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -220,6 +210,7 @@ public class PlaySongActivity extends AppCompatActivity {
         }else{
             //play
             player.start();
+            handler.postDelayed(p_bar,1000);
             btnPlayPause.setBackgroundResource(R.drawable.ic_baseline_pause_circle_outline_24);
 
         }
@@ -276,7 +267,7 @@ public class PlaySongActivity extends AppCompatActivity {
     public void repeatSong(View view) {
         if(repeatFlag){
             btnRepeat.setBackgroundResource(R.drawable.repeat_off);
-            Log.d("Temasek","Disabled Shuffle. Button ID:" + btnRepeat.getId());
+            Log.d("Temasek","Disabled repeat. Button ID:" + btnRepeat.getId());
 
         }else {
             btnRepeat.setBackgroundResource(R.drawable.repeat_on);
@@ -290,10 +281,12 @@ public class PlaySongActivity extends AppCompatActivity {
             btnShuffle.setBackgroundResource(R.drawable.shuffle_off);
             Log.d("Temasek","Disabled Shuffle. Button ID:" + btnShuffle.getId());
 
+
         }else {
             btnShuffle.setBackgroundResource(R.drawable.shuffle_on);
             Log.d("Temasek","Activated shuffle. Button ID:" + btnShuffle.getId());
             Collections.shuffle(shuffleList);
+            shuffleList = Arrays.asList(songCollection.songs);
 
             //takes the list and applies to songCollection.songs array
             shuffleList.toArray(songCollection.songs);

@@ -42,7 +42,6 @@ public class PlaySportsModeActivity extends AppCompatActivity {
 
     Button btnRepeat;
     Button btnShuffle;
-    Button btnBack;
 
     Boolean repeatFlag = false;
     Boolean shuffleFlag = false;
@@ -60,7 +59,6 @@ public class PlaySportsModeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_sports_mode);
         Bundle songData = this.getIntent().getExtras();
 
-        btnBack = findViewById(R.id.btnBackSports);
         btnRepeat = findViewById(R.id.btnRepeatSports);
         btnShuffle = findViewById(R.id.btnShuffleSports);
         btnPlayPause = findViewById(R.id.btnPlayPauseSports);
@@ -69,16 +67,6 @@ public class PlaySportsModeActivity extends AppCompatActivity {
         Log.d("Temasek","Retrieved position is: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
-                intent.putExtra("index",currentIndex);
-                player.stop();
-                startActivity(intent);
-            }
-        });
 
         seekBar = findViewById(R.id.seekBarSports);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

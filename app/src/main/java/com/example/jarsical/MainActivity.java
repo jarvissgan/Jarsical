@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_library:
                     selectedFragment = new libraryFragment();
                     fragmentName = findViewById(R.id.txtFragmentName);
-                    fragmentName.setText("Library");
+                    fragmentName.setText("Playlist");
                     break;
                 case R.id.nav_search:
                     selectedFragment = new searchFragment();

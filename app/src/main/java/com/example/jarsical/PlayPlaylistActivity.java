@@ -50,7 +50,6 @@ public class PlayPlaylistActivity extends AppCompatActivity {
     Button btnRepeat;
     Button btnShuffle;
     Button btnMore;
-    Button btnBack;
 
 
     Boolean repeatFlag = false;
@@ -80,7 +79,6 @@ public class PlayPlaylistActivity extends AppCompatActivity {
         }
 
         btnMore = findViewById(R.id.btnMore);
-        btnBack = findViewById(R.id.btnBack);
         btnRepeat = findViewById(R.id.btnRepeat);
         btnShuffle = findViewById(R.id.btnShuffle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
@@ -93,15 +91,6 @@ public class PlayPlaylistActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //shows context menu when button is pressed
                 v.showContextMenu();
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //switches to main class, stops player at the same time as well
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                player.stop();
-                startActivity(intent);
             }
         });
 
