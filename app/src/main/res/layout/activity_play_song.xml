@@ -10,15 +10,14 @@
 
     <ImageView
         android:id="@+id/imgCoverArt"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="345dp"
+        android:layout_height="298dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041"
+        app:layout_constraintVertical_bias="0.177"
         app:srcCompat="@drawable/home" />
 
     <Button
@@ -120,5 +119,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.562" />
+
+    <Button
+        android:id="@+id/btnMore"
+        android:layout_width="89dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_baseline_more_horiz_24"
+        app:layout_constraintBottom_toTopOf="@+id/imgCoverArt"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="65dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginRight="312dp"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

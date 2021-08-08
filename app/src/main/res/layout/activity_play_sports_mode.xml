@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlaySportsModeActivity"
+    android:background="@drawable/gradient_background"
+    >
+
+    <Button
+        android:id="@+id/btnPreviousSports"
+        android:layout_width="129dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+
+        android:layout_marginTop="108dp"
+        android:background="@drawable/ic_baseline_skip_previous_24"
+        android:onClick="playPrevious"
+        android:rotation="90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnPlayPauseSports"
+        android:layout_width="129dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="72dp"
+
+        android:background="@drawable/ic_baseline_play_circle_outline_24"
+        android:onClick="playOrPauseMusic"
+        android:rotation="90"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextSports"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPreviousSports"
+        app:layout_constraintVertical_bias="0.961" />
+
+    <TextView
+        android:id="@+id/txtSongTitleSports"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginLeft="180dp"
+        android:gravity="center_horizontal"
+        android:rotation="90"
+        android:text="Song Title"
+
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/btnNextSports"
+        android:layout_width="129dp"
+        android:layout_height="122dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/ic_baseline_skip_next_24"
+        android:onClick="playNext"
+
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtArtistSports"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="228dp"
+        android:layout_marginLeft="228dp"
+        android:layout_marginTop="384dp"
+        android:rotation="90"
+
+        android:text="Song Title"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarSports"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:progressBackgroundTint="@color/black"
+
+        android:progressTint="@color/white"
+        android:rotation="90"
+        android:thumbTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546" />
+
+    <Button
+        android:id="@+id/btnRepeatSports"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/repeat_off"
+        android:onClick="repeatSong"
+        android:rotation="90"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNextSports"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnShuffleSports"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/shuffle_off"
+        android:onClick="shuffleSong"
+
+        android:rotation="90"
+        app:layout_constraintBottom_toTopOf="@+id/btnPreviousSports"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnBackSports"
+        android:layout_width="106dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        android:rotation="90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

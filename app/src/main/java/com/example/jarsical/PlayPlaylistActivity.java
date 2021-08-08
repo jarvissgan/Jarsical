@@ -1,8 +1,5 @@
 package com.example.jarsical;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -18,6 +15,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class PlaySongActivity extends AppCompatActivity {
+public class PlayPlaylistActivity extends AppCompatActivity {
 
     MediaPlayer player = new MediaPlayer();
     SharedPreferences sharedPreferences;
@@ -44,8 +44,9 @@ public class PlaySongActivity extends AppCompatActivity {
 
     //turns array to list, used for shuffle
     List<Song> shuffleList  = Arrays.asList(songCollection.songs);
+    ArrayList<Song> favList = new ArrayList<Song>();
 
-    TextView txtsongTitle;
+    TextView txtSongTitle;
     Button btnRepeat;
     Button btnShuffle;
     Button btnMore;
@@ -57,7 +58,6 @@ public class PlaySongActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     Handler handler = new Handler();
-    ArrayList<Song> favList = new ArrayList<Song>();
 
 
     @Override
@@ -68,23 +68,37 @@ public class PlaySongActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_song);
         Bundle songData = this.getIntent().getExtras();
 
+        //gets shared preferences from device
+        sharedPreferences = getSharedPreferences("playlist",MODE_PRIVATE);
+        String albums = sharedPreferences.getString("playlist","");
+
+        //if shared preferences exist, it sets favList as the contents in shared preferences
+        if(!albums.equals("")){
+            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
+            Gson gson = new Gson();
+            favList = gson.fromJson(albums,token.getType());
+        }
+
         btnMore = findViewById(R.id.btnMore);
         btnBack = findViewById(R.id.btnBack);
         btnRepeat = findViewById(R.id.btnRepeat);
         btnShuffle = findViewById(R.id.btnShuffle);
         btnPlayPause = findViewById(R.id.btnPlayPause);
+        txtSongTitle = findViewById(R.id.txtSongTitle);
+
         registerForContextMenu(btnMore);
-        txtsongTitle = findViewById(R.id.txtSongTitle);
 
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //shows context menu when button is pressed
                 v.showContextMenu();
             }
         });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //switches to main class, stops player at the same time as well
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 player.stop();
                 startActivity(intent);
@@ -111,6 +125,7 @@ public class PlaySongActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if(player !=null && player.isPlaying()){
+                    //changes position if player is playing
                     player.seekTo(seekBar.getProgress());
                 }
             }
@@ -118,20 +133,12 @@ public class PlaySongActivity extends AppCompatActivity {
         seekBar.setMax(player.getDuration());
         handler.postDelayed(p_bar,1000);
 
-        //gets shared preferences from device
-        sharedPreferences = getSharedPreferences("playlist",MODE_PRIVATE);
-        String albums = sharedPreferences.getString("playlist","");
-        if(!albums.equals("")){
-            //if shared preferences exist, it sets favList as the contents in shared preferences
-            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
-            Gson gson = new Gson();
-            favList = gson.fromJson(albums,token.getType());
-        }
+
     }
 
     @Override
+    //creates context menu with the menu_more and sets header as options
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        //shows context menu when button is pressed
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("Options");
         getMenuInflater().inflate(R.menu.menu_more, menu);
@@ -150,7 +157,7 @@ public class PlaySongActivity extends AppCompatActivity {
                 return true;
             case R.id.option_playlist:
                 //when option_playlist is pressed, adds current song to favList and stores in shared preferences
-                String songID = txtsongTitle.getText().toString();
+                String songID = txtSongTitle.getText().toString();
                 Log.d("songid",songID);
                 Song song = songCollection.searchSongByName(songID);
                 favList.add(song);
@@ -163,6 +170,8 @@ public class PlaySongActivity extends AppCompatActivity {
                 Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
                 return true;
         }
+
+
         return super.onContextItemSelected(item);
     }
 
@@ -170,6 +179,7 @@ public class PlaySongActivity extends AppCompatActivity {
         @Override
         public void run() {
             if(player !=null && player.isPlaying()){
+                //adds position every 1000 milliseconds
                 seekBar.setProgress(player.getCurrentPosition());
                 handler.postDelayed(this,1000);
             }
@@ -178,7 +188,7 @@ public class PlaySongActivity extends AppCompatActivity {
     };
 
     public void displaySongBasedOnIndex(int currentIndex){
-        Song song = songCollection.getCurrentSong(currentIndex);
+        Song song = favList.get(currentIndex);
         title = song.getTitle();
         artist = song.getArtists();
         fileLink = song.getFileLink();
@@ -225,11 +235,15 @@ public class PlaySongActivity extends AppCompatActivity {
         }
     }
     public void playNext(View view){
-        currentIndex = songCollection.getNextSong(currentIndex);
-
+        if(currentIndex >= favList.size()-1){
+            Log.d("size", String.valueOf(favList.size()));
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
         /*Toast.makeText(this, "After clicking playNext,\nthe current index of this song\n"
         + "in the songCollection array is now: " + currentIndex, Toast.LENGTH_LONG).show();*/
-        //Log.d("Temasek", "After playNext, the index is now: " + currentIndex);
+        Log.d("Temasek", "After playNext, the index is now: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
         seekBar.setProgress(0);
@@ -239,7 +253,11 @@ public class PlaySongActivity extends AppCompatActivity {
     }
 
     public void playPrevious(View view){
-        currentIndex = songCollection.getPreviousSong(currentIndex);
+        if(currentIndex <= 0){
+            currentIndex =favList.size()-1;
+        } else {
+            currentIndex = currentIndex -1;
+        }
         seekBar.setProgress(0);
         seekBar.setMax(player.getDuration());
         handler.postDelayed(p_bar,1000);

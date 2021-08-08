@@ -50,10 +50,11 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //sets information based on current position in array songs
         Song song = songFiltered.get(position);
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtists());
-        Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// loads images into imageButton
+        Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// Uses picasso to download images into imageButton
         holder.imageButton.setContentDescription(song.getId());
         holder.favButton.setContentDescription(song.getId());
 
@@ -77,17 +78,22 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder
             protected FilterResults performFiltering(CharSequence constraint) {
                 String charString = constraint.toString();
                 if(charString.isEmpty()){
+                    //if search is empty
                     Log.d("charstring", "empty!");
+                    songFiltered = songArray;
 
                 }else {
+                    //if search is not empty, it compares search with every item in songArray
                     Log.d("filter", "trying to filter");
                     List<Song> filteredList = new ArrayList<>();
                     for(int i = 0; i < songArray.size();i++){
                         Log.d("filter", songArray.get(i).getTitle());
+                        //if search is found, adds song to filteredList
                         if(songArray.get(i).getTitle().toLowerCase().contains(charString.toLowerCase())){
                             filteredList.add(songArray.get(i));
                         }
                     }
+                    //sets results from filteredList
                     songFiltered = filteredList;
                     notifyDataSetChanged();
 

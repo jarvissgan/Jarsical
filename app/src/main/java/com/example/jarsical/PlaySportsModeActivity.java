@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +17,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -29,11 +26,9 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class PlaySongActivity extends AppCompatActivity {
+public class PlaySportsModeActivity extends AppCompatActivity {
 
     MediaPlayer player = new MediaPlayer();
-    SharedPreferences sharedPreferences;
-
     private String title = "";
     private String artist ="";
     private String fileLink ="";
@@ -45,19 +40,16 @@ public class PlaySongActivity extends AppCompatActivity {
     //turns array to list, used for shuffle
     List<Song> shuffleList  = Arrays.asList(songCollection.songs);
 
-    TextView txtsongTitle;
     Button btnRepeat;
     Button btnShuffle;
-    Button btnMore;
     Button btnBack;
-
 
     Boolean repeatFlag = false;
     Boolean shuffleFlag = false;
 
     SeekBar seekBar;
     Handler handler = new Handler();
-    ArrayList<Song> favList = new ArrayList<Song>();
+    ArrayList<Song> song;
 
 
     @Override
@@ -65,38 +57,30 @@ public class PlaySongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //hides action bar
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_play_song);
+        setContentView(R.layout.activity_play_sports_mode);
         Bundle songData = this.getIntent().getExtras();
 
-        btnMore = findViewById(R.id.btnMore);
-        btnBack = findViewById(R.id.btnBack);
-        btnRepeat = findViewById(R.id.btnRepeat);
-        btnShuffle = findViewById(R.id.btnShuffle);
-        btnPlayPause = findViewById(R.id.btnPlayPause);
-        registerForContextMenu(btnMore);
-        txtsongTitle = findViewById(R.id.txtSongTitle);
-
-        btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.showContextMenu();
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                player.stop();
-                startActivity(intent);
-            }
-        });
+        btnBack = findViewById(R.id.btnBackSports);
+        btnRepeat = findViewById(R.id.btnRepeatSports);
+        btnShuffle = findViewById(R.id.btnShuffleSports);
+        btnPlayPause = findViewById(R.id.btnPlayPauseSports);
 
         currentIndex = songData.getInt("index");
         Log.d("Temasek","Retrieved position is: " + currentIndex);
         displaySongBasedOnIndex(currentIndex);
         playSong(fileLink);
 
-        seekBar = findViewById(R.id.seekBar);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PlaySongActivity.class);
+                intent.putExtra("index",currentIndex);
+                player.stop();
+                startActivity(intent);
+            }
+        });
+
+        seekBar = findViewById(R.id.seekBarSports);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -115,55 +99,9 @@ public class PlaySongActivity extends AppCompatActivity {
                 }
             }
         });
+
         seekBar.setMax(player.getDuration());
         handler.postDelayed(p_bar,1000);
-
-        //gets shared preferences from device
-        sharedPreferences = getSharedPreferences("playlist",MODE_PRIVATE);
-        String albums = sharedPreferences.getString("playlist","");
-        if(!albums.equals("")){
-            //if shared preferences exist, it sets favList as the contents in shared preferences
-            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
-            Gson gson = new Gson();
-            favList = gson.fromJson(albums,token.getType());
-        }
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        //shows context menu when button is pressed
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Options");
-        getMenuInflater().inflate(R.menu.menu_more, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.option_sports_mode:
-                // when option_sports_mode is pressed, switches to PlaySportsModeActivity
-                Intent intent = new Intent(this, PlaySportsModeActivity.class);
-                intent.putExtra("index",currentIndex);
-                startActivity(intent);
-                player.stop();
-
-                return true;
-            case R.id.option_playlist:
-                //when option_playlist is pressed, adds current song to favList and stores in shared preferences
-                String songID = txtsongTitle.getText().toString();
-                Log.d("songid",songID);
-                Song song = songCollection.searchSongByName(songID);
-                favList.add(song);
-
-                Gson gson = new Gson();
-                String json = gson.toJson(favList);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("playlist", json);
-                editor.apply();
-                Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onContextItemSelected(item);
     }
 
     Runnable p_bar = new Runnable() {
@@ -182,15 +120,13 @@ public class PlaySongActivity extends AppCompatActivity {
         title = song.getTitle();
         artist = song.getArtists();
         fileLink = song.getFileLink();
-        TextView txtTitle = findViewById(R.id.txtSongTitle);
+        TextView txtTitle = findViewById(R.id.txtSongTitleSports);
         txtTitle.setText(title);
-        TextView txtArtist = findViewById(R.id.txtArtist);
+        TextView txtArtist = findViewById(R.id.txtArtistSports);
         txtArtist.setText(artist);
-        ImageView iCoverArt = findViewById(R.id.imgCoverArt);
 
         //picasso allows to download images from the image and store in cache, reducing app size
         //.fit() allows picasso to internally reduce the image size
-        Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(iCoverArt);// loads images into imageButton
         handler.removeCallbacks(p_bar);
 
 

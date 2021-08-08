@@ -96,7 +96,6 @@ public class SongCollection {
         if(currentSongIndex <= 0){
             //if index is less than 0, it plays the last song on the array
             return songs.length-1;
-
         }else{
             return currentSongIndex-1;
         }
@@ -109,6 +108,15 @@ public class SongCollection {
         for(int index=0; index < songs.length; index++){
             Song tempSong = songs[index];
             if(tempSong.getId().equals(id)){
+                return tempSong;
+            }
+        }
+        return null;
+    }
+    public Song searchSongByName(String name){
+        for(int index=0; index < songs.length; index++){
+            Song tempSong = songs[index];
+            if(tempSong.getTitle().equals(name)){
                 return tempSong;
             }
         }

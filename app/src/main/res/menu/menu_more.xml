@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/option_sports_mode"
+        android:title="Sports mode"></item>
+    <item
+        android:id="@+id/option_playlist"
+        android:title="Add to playlist"></item>
+</menu>
