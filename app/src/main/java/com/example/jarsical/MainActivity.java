@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        //fragments
+        //fragment stuff
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_Container,new songFragment()).commit();
@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         //library items
         sharedPreferences = getSharedPreferences("playlist",MODE_PRIVATE);
         String albums = sharedPreferences.getString("playlist","");
+
+        //if shared preferences exist, it sets favList as the contents in shared preferences
         if(!albums.equals("")){
             TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
             Gson gson = new Gson();
@@ -54,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToFavourite(View view){
+        //takes content description, which contains sondID and adds it to ArrayList favList
         String songID = view.getContentDescription().toString();
         Song song = songCollection.searchSongById(songID);
         favList.add(song);
 
         Gson gson = new Gson();
         String json = gson.toJson(favList);
+        //adds favList to json file and saves it
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("playlist", json);
         editor.apply();
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             TextView fragmentName;
 
+            // if button pressed == case, switches container to respective fragment
             switch (item.getItemId()){
                 case R.id.nav_home:
                     selectedFragment = new songFragment();

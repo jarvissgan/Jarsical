@@ -23,6 +23,7 @@ public class songFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //inflates layout fragment_song and uses recyclerview to display song array
         View view = inflater.inflate(R.layout.fragment_song, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewSong);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

@@ -35,14 +35,17 @@ public class songAdapter extends RecyclerView.Adapter<songAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull songAdapter.ViewHolder holder, int position) {
         Song song = songs[position];
+        //sets information based on current position in array songs
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtists());
-        Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// loads images into imageButton
+
+        Picasso.get().load(song.getArtLink()).fit().placeholder(R.drawable.ic_baseline_error_24).into(holder.imageButton);// uses picasso to download images into imageButton
 
         holder.imageButton.setContentDescription(song.getId());
         holder.favButton.setContentDescription(song.getId());
 
         holder.imageButton.setOnClickListener(v -> {
+            //goes to PlaySongActivity with information on current position, allowing it to play songs
             Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
             intent.putExtra("index",position);
             v.getContext().startActivity(intent);
